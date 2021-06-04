@@ -1,0 +1,63 @@
+package dsd_3;
+
+import java.util.Scanner;
+
+class Node { // описание элемента
+    public int value;
+    public Node next;
+    Node(int value, Node next) { // конструктор
+        this.value = value;
+        this.next = next;
+    }}
+public class DSD_3 {
+    public Node createHead(){
+        int i = 1;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите количество элементов в списке ");
+        int m = sc.nextInt() - 1;
+        System.out.println("Введите значение 1 числа ");
+        int k = sc.nextInt();
+        Node tail = new Node(k, null);
+        for (; m != 0; m--) {
+            i += 1;
+            System.out.println("Введите значение " + i + " числа ");
+            int a = sc.nextInt();
+            tail.next = new Node(a, null);
+            tail = tail.next;
+        }return tail;
+    }
+    public void createTail(){
+
+    }
+    public void toString(Node ref){
+        while (ref != null) {
+            System.out.print(" "+ref.value);
+            ref = ref.next;
+        }
+    }
+    public void AddFirst(){
+return;
+    }
+    public void AddLast(){
+        return;
+    }
+    public void Insert(int number){
+        return;
+    }
+    public void RemoveFirst(){
+        return;
+    }
+    public void RemoveLast(){
+        return;
+    }
+    public void Remove(int number){
+        return;
+    }
+
+    public static void main(String[] args) {
+        DSD_3 a = new DSD_3();
+
+        Node node = a.createHead();
+        a.toString(node);
+    }
+}
