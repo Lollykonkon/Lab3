@@ -1,0 +1,85 @@
+package dsd_variant;
+import java.util.*;
+class Node { // описание элемента
+    public int value;
+    public Node next;
+    Node(int value, dsd_variant.Node next) { // конструктор
+        this.value = value;
+        this.next = next;
+    }}
+
+public class DSD_variant {
+    public static void main(String[] args) {
+        int Summa = 0, Kolichectvo = 0, i = 1, max = -999999999, min = 1, rab = 0;
+        double avg = 0;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите количество элементов в списке ");
+        int m = sc.nextInt() - 1;
+        System.out.println("Введите значение 1 числа ");
+        int k = sc.nextInt();
+        Node head = new Node(k, null);
+        Node tail = head;
+        for (; m != 0; m--) {
+            i += 1;
+            System.out.println("Введите значение " + i + " числа ");
+            int a = sc.nextInt();
+            tail.next = new Node(a, null);
+            tail = tail.next;
+        }
+
+        // Проверка на наличие "не делятся на 5."
+        Node ref = head;
+        while (ref != null) {
+            if (ref.value % 5 != 0) {
+                rab += 1;
+                min=ref.value;
+            }
+            ref = ref.next;
+        }
+        if (rab != 0) {
+            ref = head;
+            while (ref != null) {
+                if (ref.value > max & ref.value % 5 != 0 && ref.value <0) {
+                    max = ref.value;
+                }
+                if (ref.value < min & ref.value % 5 != 0 && ref.value <0) {
+                    min = ref.value;
+                }
+                if (ref.value % 5 != 0) {
+                    Summa += ref.value;
+                    ref = ref.next;
+                    Kolichectvo += 1;
+                } else ref = ref.next;
+            }
+            if (Kolichectvo != 0) {
+                avg = (double) Summa / Kolichectvo;
+            }
+        }
+        if (rab!=0){
+            System.out.println();
+            System.out.println("Сумма чисел, не делящихся на 5 равна " + Summa);
+            System.out.println("Количество чисел, не делящихся на 5 равно " + Kolichectvo);
+            System.out.println("Среднее значение чисел, не делящихся на 5 равно " + avg);
+            System.out.println("Максимальное значение отрицательных чисел, не делящихся на 5 равно " + max);
+            System.out.println("Минимальное  значение отрицательных чисел, не делящихся на 5 равно " + min);}
+        else
+            System.out.println("Чисел, не делящихся на 5 нет");
+
+        System.out.println();
+        ref = head;
+        while (ref != null) {
+            if (ref.value == max) {
+                ref.value = min;}
+            else if (ref.value == min) {
+                ref.value = max;
+            }
+            ref = ref.next;
+        }
+        ref = head;
+        while (ref != null) {
+            System.out.print(" "+ref.value);
+            ref = ref.next;
+        }
+    }
+}
